@@ -9,5 +9,8 @@ test
 # Video Folder
 Video
 
-#Output Video
+# Output Video
 output.avi
+
+# Image Folder
+image
