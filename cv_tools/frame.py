@@ -4,6 +4,9 @@ import cv2
 
 class Frame(np.ndarray):
     def __new__(cls, frame, height, width):
+
+        frame = cv2.resize(frame, (width, height))
+
         obj = np.asarray(frame).view(cls)
         obj.height = height
         obj.width = width

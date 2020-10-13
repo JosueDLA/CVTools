@@ -16,7 +16,8 @@ class Video:
 
     def read(self, video_capture):
         ret, frame = video_capture.read()
-        frame = cv2.resize(frame, (self.width, self.height))
+
+        frame = Frame(frame, self.height, self.width)
 
         return ret, frame
 
