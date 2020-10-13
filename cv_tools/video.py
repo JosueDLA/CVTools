@@ -1,3 +1,4 @@
+from .frame import Frame
 import numpy as np
 import cv2
 
@@ -25,4 +26,5 @@ class Video:
 
         out = cv2.VideoWriter(output_path, fourcc, 30,
                               (self.width, self.height))
+
         return out
