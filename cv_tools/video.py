@@ -6,7 +6,11 @@ def select_video(path, height, width):
     video = cv2.VideoCapture(path)
 
     #cv2.VideoWriter(name, codec, fps, resolution)
-    fourcc = cv2.VideoWriter(*'MPEG')
+    fourcc = cv2.VideoWriter_fourcc(*'MPEG')
     out = cv2.VideoWriter('output.avi', fourcc, 30, (width, height))
 
-    return video, out
+    return video
+
+
+def write_video(path, height, width):
+    pass
