@@ -2,17 +2,24 @@ import numpy as np
 import cv2
 
 
-class video:
+class Video:
     def __init__(self, path, height, width):
         self.path = path
         self.height = height
         self.width = width
 
-    def select_video(self):
+    def select(self):
         video = cv2.VideoCapture(self.path)
+
         return video
 
-    def write_video(self, output_path):
+    def read(self, video_capture):
+        ret, frame = video_capture.read()
+        frame = cv2.resize(frame, (self.width, self.height))
+
+        return ret, frame
+
+    def write(self, output_path):
         #cv2.VideoWriter(name, codec, fps, resolution)
         fourcc = cv2.VideoWriter_fourcc(*'MPEG')
 

@@ -2,13 +2,17 @@ import numpy as np
 import cv2
 
 
-class frame:
+class Frame:
     def __init__(self, path, height, width):
         self.path = path
         self.height = height
         self.width = width
 
     def filter_frame(frame, height, width):
+        """
+        Filter frame with multiple techniques to make contour detection easier.
+        """
+
         # GrayScale the frame
         gray = cv2.cvtColor(image, cv2.COLOR_BAYER_GR2GRAY)
 
