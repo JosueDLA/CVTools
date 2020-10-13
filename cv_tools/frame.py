@@ -12,10 +12,10 @@ class Frame(np.ndarray):
     def __array_finalize__(self, obj):
         if obj is None:
             return
-        self.heigh = getattr(obj, 'height', None)
+        self.height = getattr(obj, 'height', None)
         self.width = getattr(obj, 'width', None)
 
-    def filter_frame(height, width):
+    def filter_frame(self):
         """
         Filter frame with multiple techniques to make contour detection easier.
         """
