@@ -24,13 +24,13 @@ class Frame(np.ndarray):
         """
 
         # GrayScale the frame
-        gray = cv2.cvtColor(image, cv2.COLOR_BAYER_GR2GRAY)
+        gray = cv2.cvtColor(self, cv2.COLOR_BGR2GRAY)
 
         # White frame for outpur contour video
-        self.create_white_frame()
+        white = self.create_white_frame()
 
         # Edge detection with blured image
-        blured = cv2.GaussianBlur(gray, (5, 5), 0)
+        blurred = cv2.GaussianBlur(gray, (5, 5), 0)
         #bilateral = cv2.bilateralFilter(gray, 11, 17, 17)
         canny = cv2.Canny(blurred, 40, 200)
 
@@ -38,8 +38,15 @@ class Frame(np.ndarray):
         kernel = np.ones((3, 3), np.uint8)
         dilated = cv2.dilate(canny, kernel, iterations=2)
 
-    def get_contours(self):
-        pass
+        return white, dilated
+
+    def get_contours(self, dilated):
+        (contours, hierarchy) = cv2.findContours(
+            dilated.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+        hierarchy = hierarchy[0]
+
+        contours, hierarchy = remove_parent_contour(contours, hierarchy)
+        return contours, hierarchy
 
     def create_white_frame(self):
         white_frame = 0 * np.ones((self.height, self.width, 3), np.uint8)
