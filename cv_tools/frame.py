@@ -1,3 +1,4 @@
+from . import contour
 import numpy as np
 import cv2
 
@@ -45,7 +46,9 @@ class Frame(np.ndarray):
             dilated.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
         hierarchy = hierarchy[0]
 
-        contours, hierarchy = remove_parent_contour(contours, hierarchy)
+        contours, hierarchy = contour.remove_parent_contour(
+            contours, hierarchy)
+
         return contours, hierarchy
 
     def create_white_frame(self):
