@@ -1,3 +1,4 @@
+from .frame import Frame
 import numpy as np
 import cv2
 
@@ -13,3 +14,8 @@ class Image:
         image = cv2.resize(image, (self.width, self.height))
 
         return image
+
+    def read(self, image):
+        frame = Frame(image, self.height, self.width)
+
+        return frame

@@ -51,6 +51,9 @@ class Frame(np.ndarray):
 
         return contours, hierarchy
 
+    def sort_contours():
+        pass
+
     def create_white_frame(self):
         white_frame = 0 * np.ones((self.height, self.width, 3), np.uint8)
 
