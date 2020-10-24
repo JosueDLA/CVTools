@@ -31,9 +31,9 @@ class Frame(np.ndarray):
         white = self.create_white_frame()
 
         # Edge detection with blured image
-        blurred = cv2.GaussianBlur(gray, (5, 5), 0)
+        blurred = cv2.GaussianBlur(gray, (3, 3), 0)
         #bilateral = cv2.bilateralFilter(gray, 11, 17, 17)
-        canny = cv2.Canny(blurred, 40, 200)
+        canny = cv2.Canny(blurred, 20, 40)
 
         # Dilate lines for earsier contour detection
         kernel = np.ones((3, 3), np.uint8)
